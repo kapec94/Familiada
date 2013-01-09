@@ -1,0 +1,61 @@
+﻿<Page x:Class="Familiada.NormalGamePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="320" d:DesignWidth="460"
+	Title="NormalGamePage" Loaded="Page_Loaded">
+
+    <Grid Name="WindowRoot">
+        <Label Content="Pytanie" Height="28" Margin="12,12,186,0" Name="questionLabel" VerticalAlignment="Top" FontStyle="Italic" FontSize="12" />
+        <StackPanel Height="168" Margin="12,46,222,0" Name="answersPanel" VerticalAlignment="Top" UseLayoutRounding="False">
+            <Label Content="Odp 1" Height="28" Name="answer1" />
+            <Label Content="Odp 2" Height="28" Name="answer2" />
+            <Label Content="Odp 3" Height="28" Name="answer3" />
+            <Label Content="Odp 4" Height="28" Name="answer4" />
+            <Label Content="Odp 5" Height="28" Name="answer5" />
+            <Label Content="Odp 6" Height="28" Name="answer6" />
+        </StackPanel>
+        <Label Content="numer rundy" Height="28" Margin="310,12,12,0" Name="roundNumber" VerticalAlignment="Top" HorizontalContentAlignment="Right" FontWeight="Bold" FontSize="14" VerticalContentAlignment="Top" />
+        <Grid Height="168" HorizontalAlignment="Right" Margin="0,46,156,0" Name="grid1" VerticalAlignment="Top" Width="60">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*" />
+                <ColumnDefinition Width="30*" />
+            </Grid.ColumnDefinitions>
+            <Button Content="+" Height="23" Name="ok_1" VerticalAlignment="Top" Margin="0,1,0,0" Click="ok_Click" />
+            <Button Content="+" Height="23" Margin="0,28,0,0" Name="ok_2" VerticalAlignment="Top" Click="ok_Click" />
+            <Button Content="+" Margin="0,56,0,0" Name="ok_3" Height="23" VerticalAlignment="Top" Click="ok_Click" />
+            <Button Content="+" Height="23" Margin="0,84,0,0" Name="ok_4" VerticalAlignment="Top" Click="ok_Click" />
+            <Button Content="+" Height="23" Margin="0,112,0,0" Name="ok_5" VerticalAlignment="Top" Click="ok_Click" />
+            <Button Content="+" Height="23" Margin="0,140,0,0" Name="ok_6" VerticalAlignment="Top" Click="ok_Click" />
+            <Button Content="-" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="0,1,0,0" Name="no_1" VerticalAlignment="Top" Width="30" Click="no_Click" />
+            <Button Content="-" Height="23" HorizontalAlignment="Left" Margin="0,28,0,0" Name="no_2" VerticalAlignment="Top" Width="30" Grid.Column="1" Click="no_Click" />
+            <Button Content="-" Height="23" HorizontalAlignment="Left" Margin="0,56,0,0" Name="no_3" VerticalAlignment="Top" Width="30" Grid.Column="1" Click="no_Click" />
+            <Button Content="-" Height="23" HorizontalAlignment="Left" Margin="0,84,0,0" Name="no_4" VerticalAlignment="Top" Width="30" Grid.Column="1" Click="no_Click" />
+            <Button Content="-" Height="23" HorizontalAlignment="Left" Margin="0,112,0,0" Name="no_5" VerticalAlignment="Top" Width="30" Grid.Column="1" Click="no_Click" />
+            <Button Content="-" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="0,140,0,0" Name="no_6" VerticalAlignment="Top" Width="30" Click="no_Click" />
+        </Grid>
+        <Label Content="Punkty do drużyny:" Height="28" Margin="0,47,12,0" Name="label8" VerticalAlignment="Top" HorizontalAlignment="Right" Width="111" />
+        <Button Content="1" Height="23" Margin="0,79,69,0" Name="addPointToA" VerticalAlignment="Top" Click="addPointTo_Click" HorizontalAlignment="Right" Width="54" />
+        <Button Content="2" Height="23" Margin="0,79,12,0" Name="addPointToB" VerticalAlignment="Top" Click="addPointTo_Click" HorizontalAlignment="Right" Width="51" />
+        <Label Content="pkt" Height="28" Margin="0,12,156,0" Name="pointsSumLabel" VerticalAlignment="Top" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="30" />
+        <Label Content="pkt" Height="28" Margin="0,102,69,0" Name="pointsALabel" VerticalAlignment="Top" HorizontalAlignment="Right" Width="54" />
+        <Label Content="pkt" Height="28" Margin="0,102,12,0" Name="pointsBLabel" VerticalAlignment="Top" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="51" />
+        <Button Content="Dalej" Margin="0,0,12,11" Name="nextButton" Click="nextButton_Click" HorizontalAlignment="Right" Width="122" Height="23" VerticalAlignment="Bottom" />
+        <GroupBox Header="Błąd" Height="78" Margin="0,136,12,0" Name="groupBox1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="114">
+            <Grid>
+                <Button Content="X" Height="23" Margin="54,4,0,0" Name="mistakeBButton" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" Click="mistake_Click" />
+                <Button Content="X" Height="23" HorizontalAlignment="Left" Margin="8,4,0,0" Name="mistakeAButton" VerticalAlignment="Top" Width="40" Click="mistake_Click" />
+                <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="8,27,0,0" Name="mistakeALabel" VerticalAlignment="Top" Width="40" />
+                <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="54,28,0,0" Name="mistakeBLabel" VerticalAlignment="Top" Width="42" />
+            </Grid>
+        </GroupBox>
+        <Label Content="Tryb odpowiedzi:" Height="28" HorizontalAlignment="Left" Margin="12,220,0,0" Name="label1" VerticalAlignment="Top" />
+        <StackPanel Height="50" HorizontalAlignment="Left" Margin="20,243,0,0" Name="answerModes" VerticalAlignment="Top" Width="200">
+            <RadioButton Content="Wybór drużyny" Height="16" Name="groupChoose" IsChecked="True" Checked="answerMode_Checked" />
+            <RadioButton Content="Drużyna A" Height="16" Name="groupAAnswer" Checked="answerMode_Checked" />
+            <RadioButton Content="Drużyna B" Height="16" Name="groupBAnswer" Checked="answerMode_Checked" />
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,33 @@
+﻿<Page x:Class="Familiada.FinalGamePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="233" d:DesignWidth="460"
+	Title="FinalGamePage" Loaded="Page_Loaded">
+
+    <Grid Name="WindowRoot">
+        <StackPanel Height="168" Margin="12,12,0,0" Name="questionStack" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153">
+            <Label Content="Pyt1" Height="28" Name="label1" />
+            <Label Content="Pyt2" Height="28" Name="label2" />
+            <Label Content="Pyt3" Height="28" Name="label3" />
+            <Label Content="Pyt4" Height="28" Name="label4" />
+            <Label Content="Pyt5" Height="28" Name="label5" />
+            <Label Content="Pyt6" Height="28" Name="label6" />
+        </StackPanel>
+        <Grid Height="168" HorizontalAlignment="Left" Margin="317,12,0,0" Name="answerStack" VerticalAlignment="Top" Width="143">
+            <ComboBox Height="23" Margin="6,0,7,0" Name="comboBox1" VerticalAlignment="Top" SelectionChanged="answerBox_SelectionChanged" />
+            <ComboBox Height="23" Margin="6,28,7,0" Name="comboBox2" VerticalAlignment="Top" SelectionChanged="answerBox_SelectionChanged" />
+            <ComboBox Height="23" Margin="6,56,7,0" Name="comboBox3" VerticalAlignment="Top" SelectionChanged="answerBox_SelectionChanged" />
+            <ComboBox Height="23" Margin="6,84,7,0" Name="comboBox4" VerticalAlignment="Top" SelectionChanged="answerBox_SelectionChanged" />
+            <ComboBox Height="23" Margin="6,112,7,0" Name="comboBox5" VerticalAlignment="Top" SelectionChanged="answerBox_SelectionChanged" />
+            <ComboBox Height="23" Margin="6,139,7,0" Name="comboBox6" VerticalAlignment="Top" SelectionChanged="answerBox_SelectionChanged" />
+        </Grid>
+        <StackPanel Height="168" HorizontalAlignment="Left" Margin="170,13,0,0" Name="userStack" VerticalAlignment="Top" Width="141">
+            <Button Content="Wprowadź..." Height="23" Name="button1" Width="139" Click="button1_Click" />
+        </StackPanel>
+        <Button Content="Następny gracz" Height="23" HorizontalAlignment="Right" Margin="0,198,12,0" Name="button2" VerticalAlignment="Top" Width="107" Click="button2_Click" />
+        <Button Content="Pokaż wyniki" Height="23" HorizontalAlignment="Left" Margin="12,198,0,0" Name="button3" VerticalAlignment="Top" Width="117" Click="button3_Click" />
+    </Grid>
+</Page>

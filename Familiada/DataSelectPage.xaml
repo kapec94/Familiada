@@ -1,0 +1,17 @@
+﻿<Page x:Class="Familiada.DataSelectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="239" d:DesignWidth="434"
+	Title="DataSelect">
+
+    <Grid>
+        <StackPanel Name="stackPanel1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Data 1" Height="23" Name="button1" Width="75" Click="button_Click" />
+            <Button Content="Data 2" Height="23" Name="button2" Width="75" Click="button_Click" />
+            <Button Content="Data 3" Height="23" Name="button3" Width="75" Click="button_Click" />
+        </StackPanel>
+    </Grid>
+</Page>

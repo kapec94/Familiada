@@ -1,0 +1,4 @@
+﻿# Ignore everything but projects files and source in root folder
+*
+!/*
+!Familiada/*
