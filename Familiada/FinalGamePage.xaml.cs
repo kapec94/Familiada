@@ -60,6 +60,8 @@ namespace Familiada
                 TextBox l = new TextBox();
                 l.Text = answer;
                 l.Width = 140;
+                l.Height = 23;
+                l.Margin = new Thickness { Bottom = 5 };
                 userStack.Children.Add(l);
             }
 

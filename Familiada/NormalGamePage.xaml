@@ -3,9 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      mc:Ignorable="d" 
-      d:DesignHeight="320" d:DesignWidth="460"
-	Title="NormalGamePage" Loaded="Page_Loaded">
+      mc:Ignorable="d" d:DesignWidth="460"
+	Title="NormalGamePage" Loaded="Page_Loaded" Height="264">
 
     <Grid Name="WindowRoot">
         <Label Content="Pytanie" Height="28" Margin="12,12,186,0" Name="questionLabel" VerticalAlignment="Top" FontStyle="Italic" FontSize="12" />
@@ -51,11 +50,5 @@
                 <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="54,28,0,0" Name="mistakeBLabel" VerticalAlignment="Top" Width="42" />
             </Grid>
         </GroupBox>
-        <Label Content="Tryb odpowiedzi:" Height="28" HorizontalAlignment="Left" Margin="12,220,0,0" Name="label1" VerticalAlignment="Top" />
-        <StackPanel Height="50" HorizontalAlignment="Left" Margin="20,243,0,0" Name="answerModes" VerticalAlignment="Top" Width="200">
-            <RadioButton Content="Wybór drużyny" Height="16" Name="groupChoose" IsChecked="True" Checked="answerMode_Checked" />
-            <RadioButton Content="Drużyna A" Height="16" Name="groupAAnswer" Checked="answerMode_Checked" />
-            <RadioButton Content="Drużyna B" Height="16" Name="groupBAnswer" Checked="answerMode_Checked" />
-        </StackPanel>
     </Grid>
 </Page>

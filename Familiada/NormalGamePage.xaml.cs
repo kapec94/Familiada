@@ -66,12 +66,20 @@ namespace Familiada
 
             LoadQuestion(currentQuestion);
             roundNumber.Content = String.Format("Pytanie {0}", currentQuestion + 1);
+        }
 
-            groupChoose.IsChecked = true;
+        private void ClearMistakes()
+        {
+            this.mistakesA = this.mistakesB = 0;
+            this.mistakeALabel.Content = this.mistakeBLabel.Content = String.Empty;
+
+            parent.client.ClearMistakes();
         }
 
         private void LoadQuestion(int question)
         {
+            this.ClearMistakes();
+
             foreach (Label l in answersPanel.Children) { l.Content = String.Empty; }
 
             RoundData d = parent.round;
@@ -148,57 +156,9 @@ namespace Familiada
                 parent.client.AddMistakeB();
             }
 
-            switch (answerMode)
-            {
-                case 0:
-                    if (mistakesA == 1)
-                    {
-                        mistakeAButton.IsEnabled = false;
-                    }
-                    if (mistakesB == 1)
-                    {
-                        mistakeBButton.IsEnabled = false;
-                    }
-                    break;
-                case 1:
-                    if (mistakesA == 3)
-                    {
-                        mistakeAButton.IsEnabled = false;
-                    }
-                    if (mistakesB == 1)
-                    {
-                        mistakeBButton.IsEnabled = false;
-                    }
-                    break;
-                case 2:
-                    if (mistakesA == 1)
-                    {
-                        mistakeAButton.IsEnabled = false;
-                    }
-                    if (mistakesB == 3)
-                    {
-                        mistakeBButton.IsEnabled = false;
-                    }
-                    break;
-            }
-
             mistakeALabel.Content = mistakeBLabel.Content = String.Empty;
             for (int i = 0; i < mistakesA; i++) mistakeALabel.Content = (mistakeALabel.Content as String) + 'X';
             for (int i = 0; i < mistakesB; i++) mistakeBLabel.Content = (mistakeBLabel.Content as String) + 'X';
-        }
-
-        private void answerMode_Checked(object sender, RoutedEventArgs e)
-        {
-            if (sender == groupChoose) answerMode = 0;
-            else if (sender == groupAAnswer) answerMode = 1;
-            else if (sender == groupBAnswer) answerMode = 2;
-
-            mistakeALabel.Content = mistakeBLabel.Content = String.Empty;
-            mistakeAButton.IsEnabled = true;
-            mistakeBButton.IsEnabled = true;
-            mistakesA = mistakesB = 0;
-
-            parent.client.ClearMistakes();
         }
     }
 }
