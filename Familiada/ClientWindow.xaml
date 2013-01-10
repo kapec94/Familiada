@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Familiada.ClientWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Familiada" Height="386" Width="577" Loaded="Window_Loaded" KeyDown="Window_KeyDown">
+        Title="Familiada" Height="481" Width="704" Loaded="Window_Loaded" KeyDown="Window_KeyDown">
     <Grid>
         <Frame Name="frame" NavigationUIVisibility="Hidden" />
     </Grid>

@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Familiada.ServerWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Server" Height="346" Width="501" ResizeMode="CanMinimize" Loaded="Window_Loaded">
+        Title="Server" Height="346" Width="501" ResizeMode="CanMinimize" Loaded="Window_Loaded" Closed="Window_Closed">
     <Grid Name="WindowRoot">
         <Frame Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
