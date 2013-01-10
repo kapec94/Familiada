@@ -1,0 +1,1 @@
+Place those .xml's in the application working directory. They don't need documentation. Format is, as I think, easy enough to understand without it.

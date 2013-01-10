@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RoundData>
+  <NormalMode>
+    <Question Title="Więcej niż jedno zwierzę.">
+      <Answer Points="27">Lama</Answer>
+      <Answer Points="20">Owca</Answer>
+      <Answer Points="18">Stado</Answer>
+      <Answer Points="18">Zoo</Answer>
+      <Answer Points="9">Zwierzęta</Answer>
+      <Answer Points="8">Wataha</Answer>
+    </Question>
+    <Question Title="Z czym jemy kanapkę?">
+      <Answer Points="28">Ser</Answer>
+      <Answer Points="22">Masło</Answer>
+      <Answer Points="21">Szynka</Answer>
+      <Answer Points="18">Chleb</Answer>
+      <Answer Points="7">Nutella</Answer>
+      <Answer Points="4">Sałata</Answer>
+    </Question>
+    <Question Title="Ma  skrzydła i nie lata.">
+      <Answer Points="39">Pingwin</Answer>
+      <Answer Points="32">Kura</Answer>
+      <Answer Points="10">Struś</Answer>
+      <Answer Points="7">Tupolew</Answer>
+      <Answer Points="7">Adam Małysz</Answer>
+      <Answer Points="5">Kiwi</Answer>
+    </Question>
+    <Question Title="Bez jakiego urządzenia nie mógłbyś się obyć?">
+      <Answer Points="57">Telefon</Answer>
+      <Answer Points="30">Komputer</Answer>
+      <Answer Points="7">Urządzenia RTV</Answer>
+      <Answer Points="3">Odtwarzacz muzyki</Answer>
+      <Answer Points="3">Młot pneumatyczny</Answer>
+    </Question>
+    <Question Title="Co robią ludzie, kiedy myślą, że nikt ich nie widzi?">
+      <Answer Points="63">Dłubią w nosie</Answer>
+      <Answer Points="20">Masturbują się</Answer>
+      <Answer Points="18">Paczą</Answer>
+    </Question>
+  </NormalMode>
+  <FinalMode>
+    <Question Title="Podaj nazwisko najbardziej znanego polskiego aktora">
+      <Answer Points="33">Pazura</Answer>
+      <Answer Points="18">Adamczyk</Answer>
+      <Answer Points="17">Linda</Answer>
+      <Answer Points="16">Karolak</Answer>
+      <Answer Points="16">Żmijewski</Answer>
+    </Question>
+    <Question Title="Który kwiat ma najmocniejszy zapach?">
+      <Answer Points="37">Róża</Answer>
+      <Answer Points="20">Lilia</Answer>
+      <Answer Points="17">Bez</Answer>
+      <Answer Points="14">Konwalia</Answer>
+      <Answer Points="12">Konopie</Answer>
+    </Question>
+    <Question Title="Najbardziej popularne imię żeńskie?">
+      <Answer Points="53">Anna</Answer>
+      <Answer Points="18">Ola</Answer>
+      <Answer Points="14">Kasia</Answer>
+      <Answer Points="8">Ewa</Answer>
+      <Answer Points="7">Maria</Answer>
+    </Question>
+    <Question Title="Podaj jeden z kolorów.">
+      <Answer Points="27">Niebieski</Answer>
+      <Answer Points="21">Zielony</Answer>
+      <Answer Points="18">Różowy</Answer>
+      <Answer Points="17">Czarny</Answer>
+      <Answer Points="17">Czerwony</Answer>
+    </Question>
+    <Question Title="Owoc z którego wyciskamy nektar.">
+      <Answer Points="56">Pomarańcza</Answer>
+      <Answer Points="16">Brzoskwinia</Answer>
+      <Answer Points="13">Cytryna</Answer>
+      <Answer Points="10">Jabłko</Answer>
+      <Answer Points="5">Czekolada</Answer>
+    </Question>
+  </FinalMode>
+</RoundData>

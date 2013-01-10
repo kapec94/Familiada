@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RoundData>
+  <NormalMode>
+    <Question Title="Najbardziej popularne imię męskie">
+      <Answer Points="25">Paweł</Answer>
+      <Answer Points="24">Mateusz</Answer>
+      <Answer Points="16">Adam</Answer>
+      <Answer Points="15">Piotr</Answer>
+      <Answer Points="10">Maciej</Answer>
+      <Answer Points="10">Tomek</Answer>
+    </Question>
+    <Question Title="Jaki przedmiot szkolny przydaje się w życiu.">
+      <Answer Points="33">Kanapka</Answer>
+      <Answer Points="17">Matematyka</Answer>
+      <Answer Points="16">J. Angielski</Answer>
+      <Answer Points="15">W-F</Answer>
+      <Answer Points="11">Żaden</Answer>
+      <Answer Points="7">PO</Answer>
+    </Question>
+    <Question Title="O czym najczęściej zapominamy?">
+      <Answer Points="48">Zadanie domowe</Answer>
+      <Answer Points="15">Klucze</Answer>
+      <Answer Points="12">Urodziny</Answer>
+      <Answer Points="9">Sprawdzian</Answer>
+      <Answer Points="8">Obowiązki domowe</Answer>
+      <Answer Points="7">Mundurek</Answer>
+    </Question>
+    <Question Title="Co robimy, gdy jesteśmy smutni?">
+      <Answer Points="34">Płaczemy</Answer>
+      <Answer Points="25">Jemy</Answer>
+      <Answer Points="20">Pijemy (Kubusia)</Answer>
+      <Answer Points="14">Słuchamy muzyki</Answer>
+      <Answer Points="7">Uczymy się</Answer>
+    </Question>
+    <Question Title="Wymień książkę napisaną przez Henryka Sienkiewicza">
+      <Answer Points="41">Potop</Answer>
+      <Answer Points="36">W pustyni i w puszczy</Answer>
+      <Answer Points="23">Quo Vadis</Answer>
+    </Question>
+  </NormalMode>
+  <FinalMode>
+    <Question Title="Wymień najcieplejsze państwo w Europie">
+      <Answer Points="57">Hiszpania</Answer>
+      <Answer Points="22">Włochy</Answer>
+      <Answer Points="9">Grecja</Answer>
+      <Answer Points="9">Rosja</Answer>
+      <Answer Points="3">Polska</Answer>
+    </Question>
+    <Question Title="Podaj tytuł najbardziej znanej polskiej komedii.">
+      <Answer Points="31">Chłopaki nie płaczą</Answer>
+      <Answer Points="23">Seksmisja</Answer>
+      <Answer Points="21">Sami Swoi</Answer>
+      <Answer Points="17">Miś</Answer>
+      <Answer Points="7">Dzień Świra</Answer>
+    </Question>
+    <Question Title="Podaj nazwę zielonego owocu">
+      <Answer Points="30">Limonka</Answer>
+      <Answer Points="27">Kiwi</Answer>
+      <Answer Points="25">Jabłko</Answer>
+      <Answer Points="14">Niedojrzały banan</Answer>
+      <Answer Points="4">Awokado</Answer>
+    </Question>
+    <Question Title="Co musisz zabrać ze sobą w góry?">
+      <Answer Points="35">Plecak</Answer>
+      <Answer Points="29">Buty</Answer>
+      <Answer Points="25">Prowiant</Answer>
+      <Answer Points="8">Kompas</Answer>
+      <Answer Points="3">Telefon</Answer>
+    </Question>
+    <Question Title="Jakie znasz drapieżne zwierze?">
+      <Answer Points="34">Lew</Answer>
+      <Answer Points="25">Tygrys</Answer>
+      <Answer Points="21">Wilk</Answer>
+      <Answer Points="15">Gepard</Answer>
+      <Answer Points="5">Wąż</Answer>
+    </Question>
+  </FinalMode>
+</RoundData>

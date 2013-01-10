@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RoundData>
+  <NormalMode>
+    <Question Title="Najczęściej cytowana „gwiazda”?">
+      <Answer Points="44">Doda</Answer>
+      <Answer Points="15">Betlejemska</Answer>
+      <Answer Points="12">P. Coelho</Answer>
+      <Answer Points="11">J. Krupa</Answer>
+      <Answer Points="10">Pablo z Mielina</Answer>
+      <Answer Points="8">Lech Roch Pawlak</Answer>
+    </Question>
+    <Question Title="Jak się nazywa zwierzę żyjące na ziemi, które osiąga 30 metrów długości?">
+      <Answer Points="32">Żyrafa</Answer>
+      <Answer Points="25">Waleń</Answer>
+      <Answer Points="18">Wąż</Answer>
+      <Answer Points="16">Smok</Answer>
+      <Answer Points="7">Chomik</Answer>
+      <Answer Points="6">Jamnik</Answer>
+    </Question>
+    <Question Title="Wymień najbardziej znany środek transportu">
+      <Answer Points="57">Samochód</Answer>
+      <Answer Points="13">Autobus</Answer>
+      <Answer Points="12">Pociąg</Answer>
+      <Answer Points="8">Nogi</Answer>
+      <Answer Points="6">Rower</Answer>
+      <Answer Points="5">Hulajnoga</Answer>
+    </Question>
+    <Question Title="Czym się bawią dzieci w piaskowinicy?">
+      <Answer Points="46">Łopatkami</Answer>
+      <Answer Points="34">Piaskiem</Answer>
+      <Answer Points="8">Kupami</Answer>
+      <Answer Points="7">Zabawkami</Answer>
+      <Answer Points="5">Rękoma</Answer>
+    </Question>
+    <Question Title="Podaj przykład państwa bez dostępu do morza.">
+      <Answer Points="67">Czechy</Answer>
+      <Answer Points="20">Polska</Answer>
+      <Answer Points="13">Watykan</Answer>
+    </Question>
+  </NormalMode>
+  <FinalMode>
+    <Question Title="Podaj niebezpieczny zawód.">
+      <Answer Points="27">Strażak</Answer>
+      <Answer Points="20">Nauczyciel</Answer>
+      <Answer Points="18">Górnik</Answer>
+      <Answer Points="18">Stajenny Augiasza</Answer>
+      <Answer Points="9">Policjant</Answer>
+      <Answer Points="8">Śmieciarz</Answer>
+    </Question>
+    <Question Title="Do czego dodajemy czekoladę?">
+      <Answer Points="58">Ciasta</Answer>
+      <Answer Points="19">Lodów</Answer>
+      <Answer Points="9">Do wszystkiego</Answer>
+      <Answer Points="8">Do kawy</Answer>
+      <Answer Points="6">Do zupy</Answer>
+    </Question>
+    <Question Title="Jaka dyscyplina jest najsłynniejsza na świecie">
+      <Answer Points="36">Sportowa</Answer>
+      <Answer Points="32">Piłka nożna</Answer>
+      <Answer Points="12">Opierdaling</Answer>
+      <Answer Points="12">Biegi</Answer>
+      <Answer Points="8">Gry w bierki</Answer>
+    </Question>
+    <Question Title="Najcięższa rzecz w twoim domu to">
+      <Answer Points="41">Szafa</Answer>
+      <Answer Points="21">Telewizor</Answer>
+      <Answer Points="13">Ściana</Answer>
+      <Answer Points="13">Teściowa</Answer>
+      <Answer Points="12">Auto</Answer>
+    </Question>
+    <Question Title="Co kojarzy ci się z Francją?">
+      <Answer Points="33">Paryż</Answer>
+      <Answer Points="27">Żaby</Answer>
+      <Answer Points="18">Wino</Answer>
+      <Answer Points="12">Ślimaki</Answer>
+      <Answer Points="10">Wieża Eiffla</Answer>
+    </Question>
+  </FinalMode>
+</RoundData>
