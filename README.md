@@ -17,7 +17,7 @@ __UWAGA__: program zakłada, że wszystkie dane są poprawne. Nie wiem, co się 
   Są trzy tryby działania: wybór danych, normalna gra i finał.
 
 #### WYBÓR:
-  Wybierasz dane, klikasz 'Wczytaj' i lecisz. Ale WYBIERZ, bo znowu dostaniesz undefined behaviour.
+  Wybierasz dane, klikasz 'Wczytaj' i lecisz.
 	
 #### NORMALNA:
   Przy liście odpowiedzi masz napisaną odpowiedź i punktowanie jej. Przycisk plus odsłania odpowiedź i dodaje

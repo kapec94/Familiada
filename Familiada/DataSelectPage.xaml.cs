@@ -57,6 +57,8 @@ namespace Familiada
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            if (listView1.SelectedItem == null)
+                return;
             parent.NextPage(listView1.SelectedItem as String);
         }
     }
