@@ -68,7 +68,7 @@ namespace Familiada
                 case 3:
                     points = args[0] as List<int?>;
                     points.ForEach(delegate(int? i) { if (i.HasValue) winnerPoints += i.Value; });
-                    this.client.LoadLastPage();
+                    this.client.LoadLastPage(winnerPoints);
                     return;
             }
 

@@ -33,7 +33,13 @@ namespace Familiada
         {
             RoundData d = parent.round;
 
-            for (int i = 0; i < d.final.Length; i++)
+            if (d.final.Count == 0) {
+                // We don't have a final. Let's move on.
+                parent.NextPage(pointsList);
+                return;
+            }
+
+            for (int i = 0; i < d.final.Count; i++)
             {
                 Question q = d.final[i];
                 (questionStack.Children[i] as Label).Content = q.question;
@@ -43,7 +49,7 @@ namespace Familiada
                 }
             }
 
-            pointsList.AddRange(new int?[d.final.Length]);
+            pointsList.AddRange(new int?[d.final.Count]);
             pointsList.ForEach(delegate(int? i) { i = 0; });
 
             parent.client.LoadFinalGame(Math.Max(parent.pointsA, parent.pointsB));

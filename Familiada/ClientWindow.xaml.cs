@@ -84,7 +84,9 @@ namespace Familiada
 
         internal void ShowAnswer(int index)
         {
-            normalPage.SetAnswer(index, question.answers[index].Value, question.answers[index].Key);
+            if (index < question.answers.Count) {
+                normalPage.SetAnswer(index, question.answers[index].Value, question.answers[index].Key);
+            }
         }
 
         internal void SetPointsSum(int pointsNeutral)
@@ -145,9 +147,9 @@ namespace Familiada
             finalPage.SetScore(pointsAll);
         }
 
-        internal void LoadLastPage()
+        internal void LoadLastPage(int winnerPoints)
         {
-            this.frame.Navigate(new ClientLastPage(pointsAll));
+            this.frame.Navigate(new ClientLastPage(winnerPoints));
         }
     }
 }

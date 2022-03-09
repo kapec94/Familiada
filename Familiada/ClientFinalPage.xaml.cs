@@ -19,7 +19,6 @@ namespace Familiada
     /// </summary>
     public partial class ClientFinalPage : Page
     {
-        private int time;
         public ClientFinalPage()
         {
             InitializeComponent();

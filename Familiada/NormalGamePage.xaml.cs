@@ -18,8 +18,6 @@ namespace Familiada
     {
         ServerWindow parent;
 
-        int answerMode = 0;
-
         int mistakesA = 0;
         int mistakesB = 0;
 
@@ -52,7 +50,7 @@ namespace Familiada
 
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
-            if (++currentQuestion >= 5)
+            if (++currentQuestion >= parent.round.normal.Count)
             {
                 parent.NextPage();
                 return;
@@ -118,9 +116,19 @@ namespace Familiada
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
+            // We retrieve clicked button's index from its XAML name. Nice.
             Button b = (sender as Button);
             int number = Int32.Parse((b.Name as String).Substring(3, 1));
+            var index = number - 1;
 
+            // It's possible that we don't have an answer next to this button.
+            if (index >= question.answers.Count) {
+                // We don't. Let's bail.
+                b.IsEnabled = false;
+                return;
+            }
+
+            // It looks like we have an answer here. Let's continue.
             pointsNeutral += question.answers[number - 1].Key;
             pointsSumLabel.Content = pointsNeutral;
 
@@ -135,11 +143,12 @@ namespace Familiada
         {
             Button b = (sender as Button);
             int number = Int32.Parse((b.Name as String).Substring(3, 1));
+            var index = number - 1;
 
             b.IsEnabled = false;
             (WindowRoot.FindName("no_" + number) as Button).IsEnabled = false;
 
-            parent.client.ShowAnswer(number - 1);
+            parent.client.ShowAnswer(index);
         }
 
         private void mistake_Click(object sender, RoutedEventArgs e)

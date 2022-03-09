@@ -8,13 +8,13 @@ namespace Familiada
 {
     class RoundData
     {
-        public Question[] normal;
-        public Question[] final;
+        public List<Question> normal;
+        public List<Question> final;
 
         public RoundData()
         {
-            normal = new Question[5];
-            final = new Question[5];
+            normal = new List<Question>();
+            final = new List<Question>();
         }
 
         static public void Save(RoundData round, string path)
@@ -74,11 +74,10 @@ namespace Familiada
             XmlReaderSettings settings = new XmlReaderSettings { CloseInput = true, IgnoreComments = true };
             XmlReader reader = XmlReader.Create(path, settings);
 
-            // TODO: For the God's sake, could someone rewrite it so it's not the same things twice? DRY, man, DRY.
+            // TODO DRY
 
             reader.ReadToFollowing("NormalMode");
             reader.ReadToDescendant("Question");
-            int i = 0;
             do
             {
                 reader.MoveToAttribute("Title");
@@ -98,12 +97,17 @@ namespace Familiada
                     q.AddAnswer(answer, points);
                 } while (reader.ReadToNextSibling("Answer"));
 
-                d.normal[i++] = q;
+                d.normal.Add(q);
             } while (reader.ReadToNextSibling("Question"));
 
-            reader.ReadToFollowing("FinalMode");
+            var found = reader.ReadToFollowing("FinalMode");
+            if (!found)
+            {
+                // No FinalMode. Let's quit.
+                return d;
+            }
+
             reader.ReadToDescendant("Question");
-            i = 0;
             do
             {
                 reader.MoveToAttribute("Title");
@@ -123,7 +127,7 @@ namespace Familiada
                     q.AddAnswer(answer, points);
                 } while (reader.ReadToNextSibling("Answer"));
 
-                d.final[i++] = q;
+                d.final.Add(q);
             } while (reader.ReadToNextSibling("Question"));
 
             return d;
