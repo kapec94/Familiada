@@ -59,5 +59,10 @@ namespace Familiada
                 this.Close();
             }
         }
+
+        private void button_Duplicate_Click(object sender, RoutedEventArgs e)
+        {
+            SoundPlayer.PlaySound("zla3");
+        }
     }
 }

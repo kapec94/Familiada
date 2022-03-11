@@ -43,16 +43,21 @@ namespace Familiada
             {
                 Question q = d.final[i];
                 (questionStack.Children[i] as Label).Content = q.question;
+
+                var answerCombo = answerStack.Children[i] as ComboBox;
                 foreach (KeyValuePair<int, String> ans in q.answers)
                 {
-                    (answerStack.Children[i] as ComboBox).Items.Add(ans.ToString());
+                    answerCombo.Items.Add(ans.ToString());
                 }
+                answerCombo.Items.Add("[Zła odpowiedź]");
             }
 
-            pointsList.AddRange(new int?[d.final.Count]);
+            pointsList.AddRange(new int?[d.final.Count + 1]);
             pointsList.ForEach(delegate(int? i) { i = 0; });
 
             parent.client.LoadFinalGame(Math.Max(parent.pointsA, parent.pointsB));
+
+            SoundPlayer.PlaySound("przerywnik-final");
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -86,7 +91,21 @@ namespace Familiada
         {
             ComboBox c = sender as ComboBox;
             int index = Int32.Parse(c.Name.Substring(8, 1)) - 1;
-            pointsList[index] = parent.round.final[index].answers[c.SelectedIndex].Key;
+
+            var finalAnswers = parent.round.final[index].answers;
+            var selectedAnswerIndex = c.SelectedIndex;
+
+            if (selectedAnswerIndex >= finalAnswers.Count)
+            {
+                // This is the index of "Wrong answer" answer.
+                // We reward 0 points for it and play an error sound.
+                pointsList[index] = 0;
+            }
+            else
+            {
+                // This is one of the correct answers. Let's look up how many points is it worth.
+                pointsList[index] = finalAnswers[selectedAnswerIndex].Key;
+            }
         }
 
         private void button3_Click(object sender, RoutedEventArgs e)
@@ -104,14 +123,27 @@ namespace Familiada
             }
             else
             {
-                parent.client.ShowNextFinalAnswer(dataToSend[nextDataIndex++]);
+                var nextDataToSend = dataToSend[nextDataIndex++];
+                parent.client.ShowNextFinalAnswer(nextDataToSend);
                 if (nextDataIndex == dataToSend.Count) button3.IsEnabled = false;
+
+                if (nextDataToSend.Key > 0)
+                {
+                    // The player gave a correct answer and will receive points for it. 
+                    SoundPlayer.PlaySound("dobra1");
+                }
+                else
+                {
+                    // The answer was incorrect. The player receives 0 points for it.
+                    SoundPlayer.PlaySound("zla3");
+                }
             }
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             parent.NextPage(pointsList);
+            SoundPlayer.PlaySound("przerywnik-final-runda");
         }
     }
 }

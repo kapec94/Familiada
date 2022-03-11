@@ -92,6 +92,8 @@ namespace Familiada
             this.question = q;
 
             parent.client.LoadQuestion(q);
+
+            SoundPlayer.PlaySound("przerywnik-normal");
         }
 
         private void addPointTo_Click(object sender, RoutedEventArgs e)
@@ -137,6 +139,8 @@ namespace Familiada
 
             parent.client.ShowAnswer(number - 1);
             parent.client.SetPointsSum(pointsNeutral);
+
+            SoundPlayer.PlaySound("dobra1");
         }
 
         private void no_Click(object sender, RoutedEventArgs e)
@@ -149,6 +153,8 @@ namespace Familiada
             (WindowRoot.FindName("no_" + number) as Button).IsEnabled = false;
 
             parent.client.ShowAnswer(index);
+
+            SoundPlayer.PlaySound("dobra1");
         }
 
         private void mistake_Click(object sender, RoutedEventArgs e)
@@ -168,6 +174,13 @@ namespace Familiada
             mistakeALabel.Content = mistakeBLabel.Content = String.Empty;
             for (int i = 0; i < mistakesA; i++) mistakeALabel.Content = (mistakeALabel.Content as String) + 'X';
             for (int i = 0; i < mistakesB; i++) mistakeBLabel.Content = (mistakeBLabel.Content as String) + 'X';
+
+            SoundPlayer.PlaySound("zla3");
+        }
+
+        private void mistake_Clear(object sender, RoutedEventArgs e)
+        {
+            ClearMistakes();
         }
     }
 }

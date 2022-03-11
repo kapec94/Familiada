@@ -4,6 +4,7 @@
         Title="FinalAnswersWindow" Height="289" Width="211" Loaded="Window_Loaded">
     <Grid>
         <StackPanel Name="stackPanel1" Margin="0,0,0,34">
+            <Button Content="BYŁO" Click="button_Duplicate_Click" />
             <TextBox Height="23" Name="textBox1" Width="187" KeyDown="textBox_KeyDown" />
         </StackPanel>
         <Label Content="Czas" Height="28" Margin="0,222,0,0" Name="timeLeftLabel" VerticalAlignment="Top" HorizontalAlignment="Right" Width="36" />

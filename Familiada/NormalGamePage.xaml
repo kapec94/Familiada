@@ -48,6 +48,7 @@
                 <Button Content="X" Height="23" HorizontalAlignment="Left" Margin="8,4,0,0" Name="mistakeAButton" VerticalAlignment="Top" Width="40" Click="mistake_Click" />
                 <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="8,27,0,0" Name="mistakeALabel" VerticalAlignment="Top" Width="40" />
                 <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="54,28,0,0" Name="mistakeBLabel" VerticalAlignment="Top" Width="42" />
+                <Button Content="Czyść" Margin="0,0,0,0" VerticalAlignment="Bottom" Click="mistake_Clear" />
             </Grid>
         </GroupBox>
     </Grid>
