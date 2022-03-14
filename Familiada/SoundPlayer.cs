@@ -40,18 +40,6 @@ namespace Familiada
             return mp;
         }
 
-        static void printObject(object obj)
-        {
-            var print = "";
-            foreach(PropertyDescriptor descriptor in TypeDescriptor.GetProperties(obj))
-            {
-                string name = descriptor.Name;
-                object value = descriptor.GetValue(obj);
-                print += string.Format("{0}={1}\n", name, value);
-            }
-            MessageBox.Show(print);
-        }
-
         public static void PlaySound(string soundName)
         {
             var mp = getMediaPlayer(soundName);

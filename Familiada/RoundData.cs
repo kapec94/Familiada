@@ -4,18 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
+using System.Windows;
+
 namespace Familiada
 {
     class RoundData
     {
-        public List<Question> normal;
-        public List<Question> final;
+        public List<Question> normal = new List<Question>();
+        public List<Question> final = new List<Question>();
 
-        public RoundData()
-        {
-            normal = new List<Question>();
-            final = new List<Question>();
-        }
+        public int finalRoundTimeSeconds = 20;
 
         static public void Save(RoundData round, string path)
         {
@@ -107,7 +105,16 @@ namespace Familiada
                 return d;
             }
 
-            reader.ReadToDescendant("Question");
+            int roundTimeSeconds = 20;
+            found = reader.MoveToAttribute("RoundTime");
+            if (found)
+            {
+                roundTimeSeconds = reader.ReadContentAsInt();
+            }
+            d.finalRoundTimeSeconds = roundTimeSeconds;
+            reader.MoveToContent();
+
+            found = reader.ReadToDescendant("Question");
             do
             {
                 reader.MoveToAttribute("Title");

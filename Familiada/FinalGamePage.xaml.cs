@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -16,86 +17,129 @@ namespace Familiada
 {
     public partial class FinalGamePage : Page
     {
-        ServerWindow parent;
+        ServerWindow server;
+        ClientWindow client;
+        List<Question> questions;
+        int roundTimeSeconds;
         List<int?> pointsList = new List<int?>();
+        int initialPoints;
+        int answerToSend = 0;
+        bool isFirstPlayer;
 
-        int nextDataIndex = 0;
-        List<KeyValuePair<int, String>> dataToSend = null;
-
-        public FinalGamePage(ServerWindow window)
+        internal FinalGamePage(
+            ServerWindow serverWnd,
+            ClientWindow clientWnd,
+            List<Question> questions,
+            int initialPoints,
+            bool isFirstPlayer,
+            int roundTimeSeconds = 20)
         {
             InitializeComponent();
 
-            parent = window;
+            this.server = serverWnd;
+            this.client = clientWnd;
+            this.questions = questions;
+            this.roundTimeSeconds = roundTimeSeconds;
+            this.initialPoints = initialPoints;
+            this.isFirstPlayer = isFirstPlayer;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            RoundData d = parent.round;
-
-            if (d.final.Count == 0) {
+            if (questions.Count == 0) {
                 // We don't have a final. Let's move on.
-                parent.NextPage(pointsList);
+                server.NextPage(pointsList);
                 return;
             }
 
-            for (int i = 0; i < d.final.Count; i++)
+            // Clear question and answer stacks from content
+            foreach (var questionStackChild in questionStack.Children)
             {
-                Question q = d.final[i];
+                (questionStackChild as Label).Content = "";
+            }
+            foreach (var answerStackChild in answerStack.Children)
+            {
+                (answerStackChild as ComboBox).Items.Clear();
+            }
+
+            // Fill it again with content
+            for (int i = 0; i < questions.Count; i++)
+            {
+                var q = questions[i];
                 (questionStack.Children[i] as Label).Content = q.question;
 
                 var answerCombo = answerStack.Children[i] as ComboBox;
-                foreach (KeyValuePair<int, String> ans in q.answers)
+                foreach (var answer in q.answers)
                 {
-                    answerCombo.Items.Add(ans.ToString());
+                    answerCombo.Items.Add(answer.ToString());
                 }
                 answerCombo.Items.Add("[Zła odpowiedź]");
             }
 
-            pointsList.AddRange(new int?[d.final.Count + 1]);
+            pointsList.AddRange(new int?[questions.Count + 1]);
             pointsList.ForEach(delegate(int? i) { i = 0; });
 
-            parent.client.LoadFinalGame(Math.Max(parent.pointsA, parent.pointsB));
+            client.LoadFinalGame(initialPoints);
 
-            SoundPlayer.PlaySound("przerywnik-final");
+            if (isFirstPlayer)
+            {
+                SoundPlayer.PlaySound("przerywnik-final");
+            }
+            else
+            {
+                SoundPlayer.PlaySound("przerywnik-final-runda");
+            }
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private TextBox buildUserAnswerBox(string text = null)
         {
-            FinalAnswersWindow answersWindow = new FinalAnswersWindow();
+            var box = new TextBox
+            {
+                Width = 140,
+                Height = 23,
+                Margin = new Thickness { Bottom = 5 }
+            };
+            if (text != null)
+            {
+                box.Text = text;
+            }
+            return box;
+        }
+
+        private void enterAnswersBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var answersWindow = new FinalAnswersWindow(roundTimeSeconds);
             answersWindow.ShowDialog();
 
             userStack.Children.Clear();
             foreach (var answer in answersWindow.answers)
             {
-                TextBox l = new TextBox();
-                l.Text = answer;
-                l.Width = 140;
-                l.Height = 23;
-                l.Margin = new Thickness { Bottom = 5 };
-                userStack.Children.Add(l);
+                var box = buildUserAnswerBox(answer);
+                userStack.Children.Add(box);
             }
 
-            if (userStack.Children.Count < 5)
+            var questionCount = questions.Count;
+            var addedAnswersCount = userStack.Children.Count;
+
+            if (addedAnswersCount < questionCount)
             {
-                for (int i = 5 - userStack.Children.Count; i > 0; i--)
+                for (int i = questionCount - addedAnswersCount; i > 0; i--)
                 {
-                    TextBox l = new TextBox();
-                    l.Width = 140;
-                    userStack.Children.Add(l);
+                    var box = buildUserAnswerBox();
+                    userStack.Children.Add(box);
                 }
             }
         }
 
         private void answerBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox c = sender as ComboBox;
-            int index = Int32.Parse(c.Name.Substring(8, 1)) - 1;
+            var c = sender as ComboBox;
+            var index = Int32.Parse(c.Name.Substring(8, 1)) - 1;
 
-            var finalAnswers = parent.round.final[index].answers;
+            var answers = questions[index].answers;
             var selectedAnswerIndex = c.SelectedIndex;
 
-            if (selectedAnswerIndex >= finalAnswers.Count)
+            if (selectedAnswerIndex >= answers.Count)
             {
                 // This is the index of "Wrong answer" answer.
                 // We reward 0 points for it and play an error sound.
@@ -104,46 +148,38 @@ namespace Familiada
             else
             {
                 // This is one of the correct answers. Let's look up how many points is it worth.
-                pointsList[index] = finalAnswers[selectedAnswerIndex].Key;
+                pointsList[index] = answers[selectedAnswerIndex].Key;
             }
         }
 
-        private void button3_Click(object sender, RoutedEventArgs e)
+        private void showResultsBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (dataToSend == null)
+            var userAnswer = (userStack.Children[answerToSend] as TextBox).Text;
+            var answerPoints = pointsList[answerToSend].GetValueOrDefault(0);
+
+            client.ShowNextFinalAnswer(answerPoints, userAnswer);
+
+            answerToSend += 1;
+            if (answerToSend >= questions.Count)
             {
-                dataToSend = new List<KeyValuePair<int, string>>();
-                dataToSend.AddRange(new KeyValuePair<int, string>[pointsList.Count]);
-                for (int i = 0; i < pointsList.Count; i++)
-                {
-                    dataToSend[i] = new KeyValuePair<int, string>(
-                        pointsList[i].HasValue ? pointsList[i].Value : 0,
-                        (userStack.Children[i] as TextBox).Text);
-                }
+                showResultsBtn.IsEnabled = false;
+            }
+
+            if (answerPoints > 0)
+            {
+                // The player gave a correct answer and will receive points for it. 
+                SoundPlayer.PlaySound("dobra1");
             }
             else
             {
-                var nextDataToSend = dataToSend[nextDataIndex++];
-                parent.client.ShowNextFinalAnswer(nextDataToSend);
-                if (nextDataIndex == dataToSend.Count) button3.IsEnabled = false;
-
-                if (nextDataToSend.Key > 0)
-                {
-                    // The player gave a correct answer and will receive points for it. 
-                    SoundPlayer.PlaySound("dobra1");
-                }
-                else
-                {
-                    // The answer was incorrect. The player receives 0 points for it.
-                    SoundPlayer.PlaySound("zla3");
-                }
+                // The answer was incorrect. The player receives 0 points for it.
+                SoundPlayer.PlaySound("zla3");
             }
         }
 
-        private void button2_Click(object sender, RoutedEventArgs e)
+        private void nextPlayerBtn_Click(object sender, RoutedEventArgs e)
         {
-            parent.NextPage(pointsList);
-            SoundPlayer.PlaySound("przerywnik-final-runda");
+            server.NextPage(pointsList);
         }
     }
 }

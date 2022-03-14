@@ -16,43 +16,49 @@ namespace Familiada
 {
     public partial class NormalGamePage : Page
     {
-        ServerWindow parent;
-
         int mistakesA = 0;
         int mistakesB = 0;
 
         int pointsNeutral = 0;
         int currentQuestion = -1;
 
+        int pointsA = 0;
+        int pointsB = 0;
+
+        RoundData roundData;
+        ServerWindow server;
+        ClientWindow client;
+
         Question question = null;
 
-        public NormalGamePage(ServerWindow window)
+        internal NormalGamePage(ServerWindow serverWnd, RoundData rd, ClientWindow clientWnd)
         {
-            parent = window;
             InitializeComponent();
+            roundData = rd;
+            server = serverWnd;
+            client = clientWnd;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            pointsALabel.Content = parent.pointsA;
-            pointsBLabel.Content = parent.pointsB;
-
+            pointsALabel.Content = pointsA;
+            pointsBLabel.Content = pointsB;
             pointsSumLabel.Content = pointsNeutral;
-
             mistakeALabel.Content = mistakeBLabel.Content = String.Empty;
 
             currentQuestion = 0;
             LoadQuestion(currentQuestion);
             roundNumber.Content = String.Format("Pytanie {0}", currentQuestion + 1);
 
-            parent.client.LoadNormalGame();
+            client.LoadNormalGame();
         }
 
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
-            if (++currentQuestion >= parent.round.normal.Count)
+            if (++currentQuestion >= roundData.normal.Count)
             {
-                parent.NextPage();
+                var winnerPoints = Math.Max(pointsA, pointsB);
+                server.NextPage(winnerPoints);
                 return;
             }
 
@@ -71,17 +77,15 @@ namespace Familiada
             this.mistakesA = this.mistakesB = 0;
             this.mistakeALabel.Content = this.mistakeBLabel.Content = String.Empty;
 
-            parent.client.ClearMistakes();
+            client.ClearMistakes();
         }
 
         private void LoadQuestion(int question)
         {
             this.ClearMistakes();
-
             foreach (Label l in answersPanel.Children) { l.Content = String.Empty; }
 
-            RoundData d = parent.round;
-            Question q = d.normal[question];
+            Question q = roundData.normal[question];
 
             questionLabel.Content = q.question;
             for (int i = 0; i < q.answers.Count; i++)
@@ -90,8 +94,7 @@ namespace Familiada
             }
 
             this.question = q;
-
-            parent.client.LoadQuestion(q);
+            client.LoadQuestion(q);
 
             SoundPlayer.PlaySound("przerywnik-normal");
         }
@@ -100,27 +103,27 @@ namespace Familiada
         {
             if (sender == addPointToA)
             {
-                parent.pointsA += pointsNeutral;
-                pointsALabel.Content = parent.pointsA;
+                pointsA += pointsNeutral;
+                pointsALabel.Content = pointsA;
             }
             else
             {
-                parent.pointsB += pointsNeutral;
-                pointsBLabel.Content = parent.pointsB;
+                pointsB += pointsNeutral;
+                pointsBLabel.Content = pointsB;
             }
 
             pointsNeutral = 0;
             pointsSumLabel.Content = pointsNeutral;
 
-            parent.client.setPointsA(parent.pointsA);
-            parent.client.setPointsB(parent.pointsB);
+            client.setPointsA(pointsA);
+            client.setPointsB(pointsB);
         }
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
             // We retrieve clicked button's index from its XAML name. Nice.
-            Button b = (sender as Button);
-            int number = Int32.Parse((b.Name as String).Substring(3, 1));
+            var b = (sender as Button);
+            var number = Int32.Parse((b.Name as String).Substring(3, 1));
             var index = number - 1;
 
             // It's possible that we don't have an answer next to this button.
@@ -137,22 +140,22 @@ namespace Familiada
             b.IsEnabled = false;
             (WindowRoot.FindName("no_" + number) as Button).IsEnabled = false;
 
-            parent.client.ShowAnswer(number - 1);
-            parent.client.SetPointsSum(pointsNeutral);
+            client.ShowAnswer(number - 1);
+            client.SetPointsSum(pointsNeutral);
 
             SoundPlayer.PlaySound("dobra1");
         }
 
         private void no_Click(object sender, RoutedEventArgs e)
         {
-            Button b = (sender as Button);
-            int number = Int32.Parse((b.Name as String).Substring(3, 1));
+            var b = (sender as Button);
+            var number = Int32.Parse((b.Name as String).Substring(3, 1));
             var index = number - 1;
 
             b.IsEnabled = false;
             (WindowRoot.FindName("no_" + number) as Button).IsEnabled = false;
 
-            parent.client.ShowAnswer(index);
+            client.ShowAnswer(index);
 
             SoundPlayer.PlaySound("dobra1");
         }
@@ -163,12 +166,12 @@ namespace Familiada
             if (group == 0)
             {
                 mistakesA++;
-                parent.client.AddMistakeA();
+                client.AddMistakeA();
             }
             else
             {
                 mistakesB++;
-                parent.client.AddMistakeB();
+                client.AddMistakeB();
             }
 
             mistakeALabel.Content = mistakeBLabel.Content = String.Empty;

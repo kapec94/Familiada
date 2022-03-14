@@ -20,13 +20,12 @@ namespace Familiada
     /// </summary>
     public partial class DataSelectPage : Page
     {
-        ServerWindow parent;
+        ServerWindow server;
 
-        public DataSelectPage(ServerWindow window)
+        public DataSelectPage(ServerWindow serverWnd)
         {
             InitializeComponent();
-
-            parent = window;
+            server = serverWnd;
         }
 
         /*
@@ -57,7 +56,7 @@ namespace Familiada
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            parent.NextPage(listView1.SelectedItem as String);
+            server.NextPage(listView1.SelectedItem as String);
         }
     }
 }

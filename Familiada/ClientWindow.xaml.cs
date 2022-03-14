@@ -133,16 +133,16 @@ namespace Familiada
             pointsAll = score;
         }
 
-        internal void ShowNextFinalAnswer(KeyValuePair<int, string> data)
+        internal void ShowNextFinalAnswer(int answerPoints, string answer)
         {
-            finalPage.ShowAnswer(p, a++, data.Value, data.Key);
+            finalPage.ShowAnswer(p, a++, answer, answerPoints);
             if (a == 5)
             {
                 a = 0;
                 p = 1;
             }
-            points += data.Key;
-            pointsAll += data.Key;
+            points += answerPoints;
+            pointsAll += answerPoints;
             finalPage.SetSumScore(points);
             finalPage.SetScore(pointsAll);
         }

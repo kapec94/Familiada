@@ -25,9 +25,9 @@
             <ComboBox Height="23" Margin="6,139,7,0" Name="comboBox6" VerticalAlignment="Top" SelectionChanged="answerBox_SelectionChanged" />
         </Grid>
         <StackPanel Height="168" HorizontalAlignment="Left" Margin="170,13,0,0" Name="userStack" VerticalAlignment="Top" Width="141">
-            <Button Content="Wprowadź..." Height="23" Name="button1" Width="139" Click="button1_Click" />
+            <Button Name="enterAnswersBtn" Content="Wprowadź..." Height="23" Width="139" Click="enterAnswersBtn_Click" />
         </StackPanel>
-        <Button Content="Następny gracz" Height="23" HorizontalAlignment="Right" Margin="0,198,12,0" Name="button2" VerticalAlignment="Top" Width="107" Click="button2_Click" />
-        <Button Content="Pokaż wyniki" Height="23" HorizontalAlignment="Left" Margin="12,198,0,0" Name="button3" VerticalAlignment="Top" Width="117" Click="button3_Click" />
+        <Button Name="nextPlayerBtn" Content="Następny gracz" Height="23" HorizontalAlignment="Right" Margin="0,198,12,0" VerticalAlignment="Top" Width="107" Click="nextPlayerBtn_Click" />
+        <Button Name="showResultsBtn" Content="Pokaż wyniki" Height="23" HorizontalAlignment="Left" Margin="12,198,0,0" VerticalAlignment="Top" Width="117" Click="showResultsBtn_Click" />
     </Grid>
 </Page>
